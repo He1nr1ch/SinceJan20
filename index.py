@@ -1,12 +1,21 @@
 import streamlit as st
-from bokeh.plotting import figure, show
+import matplotlib.pyplot as plt
 import numpy as np
 
-N = 100
-x = np.linspace(0, 4*np.pi, N)
+st.title("Displaying a Matplotlib Plot with Streamlit")
+
+# Generate some sample data
+x = np.linspace(0, 10, 100)
 y = np.sin(x)
 
-p = figure(title="simple sine wave example", height=350, width=600)
-p.line(x, y, color="navy", line_width=3)
+# Create the Matplotlib plot
+fig, ax = plt.subplots()
+ax.plot(x, y)
+ax.set_title("Sine Wave")
+ax.set_xlabel("X-axis")
+ax.set_ylabel("Y-axis")
 
-st.bokeh_chart(p, use_container_width=True)
+# Display the Matplotlib plot in the Streamlit app
+st.pyplot(fig)
+
+st.write("You can also add text and other elements to your Streamlit app.")
